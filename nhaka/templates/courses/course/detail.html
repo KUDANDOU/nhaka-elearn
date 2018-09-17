@@ -1,0 +1,39 @@
+{% extends "nhaka/base.html" %}
+
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+{% block content %}
+    {% with subject=course.subject %}
+	<section class="probootstrap-section" style=" padding: 0em 0; background-image: url(/static/img/overview.jpeg);">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 overview">
+					<h2>
+						{{ object.title }}
+					</h2>
+					<div class="module">
+						<h2 class="textz">Overview</h2>
+						<p>
+							<a href="{% url 'course_list_subject' subject.slug %}">{{ subject.title }}</a>.{{ course.modules.count }} modules.Instructor: {{ course.owner.get_full_name }}
+						</p>
+						{{ object.overview|linebreaks }}
+						{% if request.user.is_authenticated %}
+						<form action="{% url "student_enroll_course" %}" method="post">
+							{{ enroll_form }}
+							{% csrf_token %}
+							<input type="submit" class="btn btn-primary" value="Enroll now">
+						</form>
+					 {% else %}
+						<a href="{% url "student_registration" %}" class="btn btn-primary">
+							Register to enroll
+						</a>
+					 {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    {% endwith %}
+{% endblock %}

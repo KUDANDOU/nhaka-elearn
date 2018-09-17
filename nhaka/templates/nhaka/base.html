@@ -1,0 +1,148 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- 
+  Theme Name: Enlight
+  Theme URL: https://PowerRangers.com/enlight-free-education-responsive-bootstrap-website-template
+  Author: PowerRangers.com
+  Author URL: https://PowerRangers.com
+  License: Released for free under the Creative Commons Attribution 3.0 license (PowerRangers.com/license)
+-->
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nhaka&mdash;</title>
+    <meta name="description" content="Free Bootstrap Theme by PowerRangers.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles-merged.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mbr-additional.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css'%}">
+
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.min.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="page">
+        <!--Side bar section-->
+        <div class="side-wrapper responsive">
+            <ul class="sidebar-nav">
+                <li>
+                    <img class="home-img img-rounded img-responsive" src="/static/player/img/101.PNG" alt="">
+
+                </li>
+                <li>
+                    <a class="active" href="#">
+                        <i class="fa fa-home"></i>
+                        <span class="small">
+                                &nbsp;&nbsp;&nbsp; Home
+                            </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="active" href="#"><i class="fa fa-compass"></i>
+                        <span class="small">
+                                &nbsp;&nbsp;&nbsp; Explore
+                            </span></a>
+                </li>
+                <li>
+                    <a class="active" href="#"><i class="fa fa-graduation-cap"></i>
+                        <span class="small">
+                                &nbsp;Recommended
+                            </span></a>
+                </li>
+                <li>
+                    <a class="active" href="#"><i class="fa fa-book"></i>
+                            <span class="small">
+                                    &nbsp;&nbsp;&nbsp; Learn
+                                </span></a>
+                </li>
+                <li>
+                    <a class="active" href="#"><i class="fa fa-bookmark"></i>
+                                <span class="small">
+                                        &nbsp;&nbsp;&nbsp; Bookmark
+                                    </span></a>
+                </li>
+            </ul>
+
+        </div>
+        <!--main page content-->
+        <div class="page-content-wrapper">
+            <div class="container-fluid content-min">
+                <div class="probootstrap-search" id="probootstrap-search">
+                    <a href="#" class="probootstrap-close js-probootstrap-close"><i class="icon-cross"></i></a>
+                    <form action="#">
+                        <input type="search" name="s" id="search" placeholder="Search a keyword and hit enter...">
+                    </form>
+                </div>
+
+                <div class="probootstrap-page-wrap">
+                    <!-- Fixed navbar -->
+                    <div class="probootstrap-header-top">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9 col-sm-9 probootstrap-top-quick-contact-info">
+                                    <span><i class="icon-location2"></i>Telone Centre, Harare Zimbabwe</span>
+                                    <span><i class="icon-phone2"></i>+263-773-828387373</span>
+                                    <span><i class="icon-mail"></i>info@PowerRangers.com</span>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 probootstrap-top-social">
+                                    <ul>
+                                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                                        <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                                        <li><a href="#"><i class="icon-youtube"></i></a></li>
+                                        <li><a href="#" class="probootstrap-search-icon js-probootstrap-search"><i class="icon-search"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="style13" style="margin-bottom: 0px;">
+                    <br>
+                    <!--starting of the content page-->
+
+                    {%block content%} {%endblock %}
+                    <!--end of the content page-->
+                </div>
+            </div>
+            <hr class="style13">
+            <footer class="probootstrap-footer">
+                <div class="probootstrap-copyright">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 text-left">
+                                <p>&copy; 2018 <a href="https://PowerRangers.com/">Nhaka E-learning</a>. All Rights Reserved. Designed &amp; Developed with <i class="icon icon-heart"></i> by <a href="https://PowerRangers.com/">PowerRangers.com</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+
+        <script src="{% static 'js/scripts.min.js'%}"></script>
+        <script src="{% static 'js/main.min.js'%}"></script>
+        <script src="{% static 'js/custom.js'%}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jqueryui.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                { % block domready %
+                } { % endblock %
+                }
+            });
+        </script>
+</body>
+
+</html>
