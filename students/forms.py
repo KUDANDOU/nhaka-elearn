@@ -19,6 +19,7 @@ class CourseEnrollForm(forms.Form):
 
 
 
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     birth_date= forms.DateField(widget=forms.SelectDateWidget)
