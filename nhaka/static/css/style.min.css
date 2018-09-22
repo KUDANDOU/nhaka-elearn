@@ -1512,7 +1512,7 @@ ontop {
 
 .side-wrapper {
     z-index: 1;
-    position: absolute;
+    position: fixed;
     width: 50px;
     height: 100%;
     overflow-y: hidden;
@@ -1526,7 +1526,7 @@ ontop {
 
 .side-wrapper:hover {
     z-index: 1;
-    position: absolute;
+    position: fixed;
     width: 170px;
     height: 100%;
     overflow-y: hidden;
