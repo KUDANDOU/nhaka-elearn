@@ -19,6 +19,12 @@ from .models import Subject,Grade
 from django.views.generic.detail import DetailView
 from students.forms import CourseEnrollForm
 from django.core.cache import cache
+from payments.models import PaynowPayment
+from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+# from django.core.urlresolvers import reverse_lazy
+from django.views import generic
+from .forms import LoginForm
 # Create your views here.
 
 
@@ -30,8 +36,36 @@ def index(request):
 def home(request):
    
     return render(request, 'courses/course/home.html')
+           
+class LoginView(generic.FormView):
+    form_class = LoginForm
+    success_url = reverse_lazy('home')
+    template_name = 'registration/login.html'
 
-    
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+
+        pay = PaynowPayment.objects.filter(status="paid")
+
+        for payment in pay:
+            if (user.id == payment.user_id):
+                print(user.id)
+                print(payment.user_id)
+                print("ndasvika")
+                login(self.request, user)
+                return super(LoginView, self).form_valid(form)
+
+        # if user is not None and user.is_active:
+        #     login(self.request, user)
+        #     return super(LoginView, self).form_valid(form)
+            else:
+                print("zvaramba")
+                return self.form_invalid(form)       
+   
+
+
 
 class ManageCourseListView(ListView):
     model = Course

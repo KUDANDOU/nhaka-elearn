@@ -3,9 +3,9 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # url('', views.index, name='index'),
+    
     url('my_profile/', views.my_profile, name='my_profile'),
-    #url(r'^cashier/', views.cashier_index, name='cashier'),
+    
     url('confirmed_payments/', views.confirmed_payments,name='confirmed_payments'),
     url('unconfirmed_payments/', views.unconfirmed_payments,name='unconfirmed_payments'),
 

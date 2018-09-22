@@ -10,6 +10,7 @@ from nhaka.models import Course
 from .forms import CourseEnrollForm
 from django.core.cache import cache
 from students.forms import RegistrationForm
+from payments.models import PaynowPayment
 
 
 class StudentRegistrationView(CreateView):
@@ -23,14 +24,48 @@ class StudentRegistrationView(CreateView):
         cd = form.cleaned_data
         user = authenticate(username=cd['username'],
                             password=cd['password1'])
-        login(self.request, user)
+
+        # login(self.request, user)      
         return result
+
+
+class StudentLoginView(CreateView):
+    template_name = 'students/student/login.html'
+    form_class = login
+    success_url = reverse_lazy('student_course_list')
+
+    def form_valid(self, form):
+        result = super(StudentRegistrationView,
+                       self).form_valid(form)
+        cd = form.cleaned_data
+        user = authenticate(username=cd['username'],
+                            password=cd['password1'])
+        
+        pay = PaynowPayment.objects.filter(status="paid")
+
+        for payment in pay:
+            
+            if(user.id == payment.user_id):
+                print(user.id)
+                print(payment.user_id)
+                print("User is not in")
+                login(self.request, user)
+            else:
+                print("User is not in")
+
+
+
+
+
+
+
 
 
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
     course = None
     form_class = CourseEnrollForm
 
+    
     def form_valid(self, form):
         self.course = form.cleaned_data['course']
         self.course.students.add(self.request.user)

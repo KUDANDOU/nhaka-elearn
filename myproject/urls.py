@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from nhaka.views import CourseListView
 from django.conf import settings
 from django.conf.urls.static import static
+from nhaka.views import LoginView
 
 
 
@@ -29,7 +30,7 @@ urlpatterns = [
     path('nhaka/', include('nhaka.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     # path('api/v1/', include('nhaka.urls')),
-    path('accounts/login', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/login', LoginView.as_view(), name='login'),
     path('accounts/logout', auth_views.LogoutView.as_view(), name='logout'),
     # path('account/password/reset', auth_views.PassWordResetView.as_view(), name='passwordreset'),
     path('course/', include('nhaka.urls')),
