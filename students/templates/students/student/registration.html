@@ -1,19 +1,68 @@
-{% extends "nhaka/base.html" %}
-
-{% block title %}
-    Sign up
-{% endblock %}
-
-{% block content %}
-    <h1>
-        Sign up
-    </h1>
-    <div class="module">
+{% extends "nhaka/base.html" %} {% block title %} Sign up {% endblock %} {% block content %}
+	
+	<!-- <div class="module">
         <p>Enter your details to create an account:</p>
         <form action="" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <p><input type="submit" value="Create my account"></p>
         </form>
-    </div>
+    </div> -->
+		<section class="probootstrap-section" style="background-image: url(/static/img/overview.jpeg); padding: 2em 0;" class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="col-lg-9 col-md-9">
+							<div class="probootstrap-block">
+								<div class="probootstrap-text " style="padding-bottom:3px; padding-top: 20px; width: 100%;">
+									<h2 class="text-center textz">Enter your details to create an account:</h2>
+									<form action="" method="post" class="probootstrap-form">
+										{% csrf_token %}
+										<div class="row">
+											<div class="form-group col-md-6">
+												<label for="name"><b>Name</b></label>
+												<input class="form-control" {{form.first_name}} </div>
+												<div class="form-group col-md-6">
+													<label for="email"><b>Surname</b></label>
+													<input class="form-control" {{form.last_name}} </div>
+												</div>
+
+												<div class="row">
+													<div class="form-group col-md-6">
+														<label for="name"><b>Username</b></label>
+														<input class="form-control" {{form.username}} </div>
+														<div class="form-group col-md-6">
+															<label for="email"><b>Email</b></label>
+															<input class="form-control" {{form.email}} </div>
+												</div>
+
+														<div class="row">
+															<div class="form-group col-md-6">
+																<label for="email"><b>Specify Grade</b></label>
+																<input type="date" class="form-control" {{form.emai}} </div>
+															</div>
+														</div>
+
+															<div class="row">
+																<div class="form-group col-md-6">
+																	<label for="name"><b>Password</b></label>
+																	<input class="form-control" {{form.password1}} </div>
+																	<div class="form-group col-md-6">
+																		<label for="email"><b>Confirm Password</b></label>
+																		<input class="form-control" {{form.password2}} </div>
+																	</div>
+																	<br>
+																	<div class="row">
+																		<div class="form-group col-md-6">
+																			<p id="alignmentz"><button class="btn btn-primary" type="submit">Register for an Account</button></p>
+																		</div>
+																	</div>
+									</form>
+									</div>
+									</div>
+									</div>
+									</div>
+									</div>
+									</div>
+		</section>
 {% endblock %}
