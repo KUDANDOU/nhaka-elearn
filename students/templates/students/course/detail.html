@@ -6,26 +6,115 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        {{ module.title }}
-    </h1>
-    <div class="contents">
-        <h3>Modules</h3>
-        <ul id="modules">
+    <div class="contents">   
         {% for m in object.modules.all %}
-            <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
-                <a href="{% url "student_course_detail_module" object.id m.id %}">
-                    <span>
-                        Module <span class="order">{{ m.order|add:1 }}</span>
-                    </span>
-                    <br>
-                    {{ m.title }}
-                </a>
-            </li>
-        {% empty %}
-            <li>No modules yet.</li>
-        {% endfor %}
-        </ul>
+		<div class="row"> 
+			<div class="col-md-7">
+			    <div class="panel panel-primary">
+					<div class="panel-heading"><b>{{ module.title }}</b></div>
+					<div class="panel-body" style="padding: 0px;">
+						<video style="width: 100%; height: 100%;" controls>
+						  <source src="/static/rain.mp4" type="video/mp4">
+						  Your browser does not support HTML5 video.
+						</video>
+					</div>	
+					<div class="panel-footer" style="padding: 0px;">
+						<!-- Nav tabs -->
+						<div class="card" style="width: 100%;">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
+								<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Transcript</a></li>
+								<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Exercises </a></li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+									it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+									sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+								<div role="tabpanel" class="tab-pane" id="profile">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+									it to make a type specimen book.</div>
+								<div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+									it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+									sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+								<div role="tabpanel" class="tab-pane" id="settings">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+									it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+									sheets containing Lorem Ipsum passage..</div>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-5" style="background: #f2f2f2;">
+				<div class="panel panel-default">
+				<div class="panel-heading"><b>Course Contents</b></div>				
+					<div class="panel-body" style="overflow-y: auto; height:380px;">
+						<div class="row">					
+							<ul class="media-list main-list">
+							  <li class="media">
+								<a class="pull-left" href="#">
+								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
+								</a>
+								<div class="media-body">
+								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
+								  <p class="by-author">By Jhon Doe</p>
+								</div>
+							  </li>
+							  
+							   <li class="media">
+								<a class="pull-left" href="#">
+								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
+								</a>
+								<div class="media-body">
+								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
+								  <p class="by-author">By Jhon Doe</p>
+								</div>
+							  </li>
+							  
+							  <li class="media">
+								<a class="pull-left" href="#">
+								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
+								</a>
+								<div class="media-body">
+								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
+								  <p class="by-author">By Jhon Doe</p>
+								</div>
+							  </li>
+							  <li class="media">
+								<a class="pull-left" href="#">
+								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
+								</a>
+								<div class="media-body">
+								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
+								  <p class="by-author">By Jhon Doe</p>
+								</div>
+							  </li>
+							</ul>	
+						</div>
+						<ul id="modules">
+							<li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
+							<a href="{% url "student_course_detail_module" object.id m.id %}">
+								<span>
+									Module <span class="order">{{ m.order|add:1 }}</span>
+								</span>
+								<br>
+								{{ m.title }}
+							</a>
+							</li>
+							{% empty %}
+							<li>No modules yet.</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+              
     </div>
     <div class="module">
         
