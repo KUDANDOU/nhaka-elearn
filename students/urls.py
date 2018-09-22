@@ -5,7 +5,7 @@ from django.views.decorators.cache import cache_page
 urlpatterns = [
     
     path('register/',views.StudentRegistrationView.as_view(),name='student_registration'),
-    path('login/', views.StudentLoginView.as_view(), name='student_login'),
+    
     path('enroll-course/',views.StudentEnrollCourseView.as_view(),name='student_enroll_course'),
     path('courses/',views.StudentCourseListView.as_view(),name='student_course_list'),
     path('course/<pk>/',cache_page(60*15)(views.StudentCourseDetailView.as_view()),name='student_course_detail'),
