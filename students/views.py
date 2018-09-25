@@ -29,7 +29,8 @@ class StudentRegistrationView(CreateView):
         return result
 
 
-
+#student Enrollment view
+#will enroll into the course & registered in DB
 class StudentEnrollCourseView(LoginRequiredMixin, FormView):
     course = None
     form_class = CourseEnrollForm
@@ -45,7 +46,7 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
         return reverse_lazy('student_course_detail',
                             args=[self.course.id])
 
-
+# LISTING COURSES FOR STUDENTS
 class StudentCourseListView(LoginRequiredMixin, ListView):
     model = Course
     template_name = 'students/course/list.html'
