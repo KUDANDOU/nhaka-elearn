@@ -23,9 +23,10 @@ class StudentRegistrationView(CreateView):
                        self).form_valid(form)
         cd = form.cleaned_data
         user = authenticate(username=cd['username'],
+        
                             password=cd['password1'])
 
-        # login(self.request, user)      
+        login(self.request, user)      
         return result
 
 
