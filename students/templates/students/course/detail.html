@@ -6,9 +6,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="contents">  
-			 <!--iterating over all modules in the course  -->
+    <h1>
+        {{ module.title }}
+    </h1>
+    <div class="contents">
+        <h3>Modules</h3>
+        <ul id="modules">
         {% for m in object.modules.all %}
+<<<<<<< HEAD
 		<div class="row"> 
 			<div class="col-md-7">
 			    <div class="panel panel-primary">
@@ -95,19 +100,30 @@
 		{% endfor %}
 	</div>
               
+=======
+            <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
+                <a href="{% url "student_course_detail_module" object.id m.id %}">
+                    <span>
+                        Module <span class="order">{{ m.order|add:1 }}</span>
+                    </span>
+                    <br>
+                    {{ m.title }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No modules yet.</li>
+        {% endfor %}
+        </ul>
+>>>>>>> 31ae8408aca10b381c6036b25ad380e74eccaa76
     </div>
     <div class="module">
-				<!-- this stage includes the following -->
-				<!-- there is caching of the actual course content -->
-				
-				{% cache 600 module_contents module %}
-				<!-- Then we iterate over each content in the module (module.contents.all) thats how we iterating -->
-        {% for content in module.contents.all %}
-            {% with item=content.item %}
-                <h2>{{ item.title }}</h2>
-                {{ item.render }}
-            {% endwith %}
-        {% endfor %}
-    {% endcache %}
+        {% cache 600 module_contents module %}
+            {% for content in module.contents.all %}
+                {% with item=content.item %}
+                    <h2>{{ item.title }}</h2>
+                    {{ item.render }}
+                {% endwith %}
+            {% endfor %}
+        {% endcache %}
     </div>
 {% endblock %}
