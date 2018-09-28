@@ -50,7 +50,7 @@
 			
 			<div class="col-md-5" style="background: #f2f2f2;">
 				<div class="panel panel-default">
-				<div class="panel-heading"><b>Course Contents</b></div>				
+				<div class="panel-heading"><b>{{ m.title }}</b></div>				
 					<div class="panel-body" style="overflow-y: auto; height:380px;">
 						<div class="row">					
 							<ul class="media-list main-list">
@@ -59,36 +59,16 @@
 								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
 								</a>
 								<div class="media-body">
-								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
-								  <p class="by-author">By Jhon Doe</p>
-								</div>
-							  </li>
-							  
-							   <li class="media">
-								<a class="pull-left" href="#">
-								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
-								</a>
-								<div class="media-body">
-								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
-								  <p class="by-author">By Jhon Doe</p>
-								</div>
-							  </li>
-							  
-							  <li class="media">
-								<a class="pull-left" href="#">
-								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
-								</a>
-								<div class="media-body">
-								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
-								  <p class="by-author">By Jhon Doe</p>
-								</div>
-							  </li>
-							  <li class="media">
-								<a class="pull-left" href="#">
-								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
-								</a>
-								<div class="media-body">
-								  <h6 class="media-heading">Lorem ipsum dolor asit amet</h6>
+									<h6 class="media-heading" data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %} ><b></h6>
+										<p><a href="{% url "student_course_detail_module" object.id m.id %}">
+											<span>
+												<!-- ordering the modules using m.order -->
+												Module <span class="order">{{ m.order|add:1 }}</span>
+											</span>
+											<br>
+											{{ m.title }}
+										</a>
+									</p>
 								  <p class="by-author">By Jhon Doe</p>
 								</div>
 							  </li>
