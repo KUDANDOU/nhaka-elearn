@@ -6,26 +6,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        {{ module.title }}
-    </h1>
-    <div class="contents">
-        <h3>Modules</h3>
-        <ul id="modules">
-        {% for m in object.modules.all %}
-<<<<<<< HEAD
-		<div class="row"> 
-			<div class="col-md-7">
-			    <div class="panel panel-primary">
-						<!-- module title i.e the name (its like highlighting the current module) -->
-					<div class="panel-heading"><b>{{ module.title }}</b></div>
-					<div class="panel-body" style="padding: 0px;">
-						<video style="width: 100%; height: 100%;" controls>
-						  <source src="/static/rain.mp4" type="video/mp4">
-						  Your browser does not support HTML5 video.
-						</video>
-					</div>	
-					<div class="panel-footer" style="padding: 0px;">
+<div class="row"> 
+	<div class="col-md-7">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><b>{{ module.title }}</b></div>
+			<div class="panel-body" style="padding: 0px;">
+					<video style="width: 100%; height: 100%;" controls>
+					  <source src="/static/rain.mp4" type="video/mp4">
+					  Your browser does not support HTML5 video.
+					</video>
+				</div>
+				<div class="panel-footer" style="padding: 0px;">
 						<!-- Nav tabs -->
 						<div class="card" style="width: 100%;">
 							<ul class="nav nav-tabs" role="tablist">
@@ -51,79 +42,49 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			<div class="col-md-5" style="background: #f2f2f2;">
-				<div class="panel panel-default">
-				<div class="panel-heading"><b>{{ m.title }}</b></div>				
-					<div class="panel-body" style="overflow-y: auto; height:380px;">
+
+	<div class="col-md-5" style="background: #f2f2f2;">
+		<div class="panel panel-default">
+				<div class="panel-heading"><b>Course Content</b></div>	
+				<div class="panel-body" style="overflow-y: auto; height:380px;">
 						<div class="row">					
-							<ul class="media-list main-list">
-							  <li class="media">
-								<a class="pull-left" href="#">
-								  <img class="media-object" src="http://placehold.it/150x90" alt="...">
-								</a>
-								<div class="media-body">
-									<h6 class="media-heading" data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %} ><b></h6>
-										<p><a href="{% url "student_course_detail_module" object.id m.id %}">
-											<span>
-												<!-- ordering the modules using m.order -->
-												Module <span class="order">{{ m.order|add:1 }}</span>
-											</span>
-											<br>
-											{{ m.title }}
-										</a>
-									</p>
-								  <p class="by-author">By Jhon Doe</p>
-								</div>
-							  </li>
-							</ul>	
-						</div>
-						<ul id="modules">
-							<li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
-							<a href="{% url "student_course_detail_module" object.id m.id %}">
-								<span>
-									<!-- ordering the modules using m.order -->
-									Module <span class="order">{{ m.order|add:1 }}</span>
-								</span>
-								<br>
-								{{ m.title }}
-							</a>
-							</li>
-							{% empty %}
-							<li>No modules yet.</li>
-						</ul>
-					</div>
+								<ul class="media-list main-list">
+										{% for m in object.modules.all %}
+								  <li class="media" data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
+									<a class="pull-left" href="{% url "student_course_detail_module" object.id m.id %}">
+									  <img class="media-object" src="http://placehold.it/150x90" alt="...">
+									</a>
+									<div class="media-body">
+										<h6 class="media-heading">{{ m.title }}</h6>
+											<p><a href="{% url "student_course_detail_module" object.id m.id %}">
+												<span>
+													<!-- ordering the modules using m.order -->
+													Module <span class="order">{{ m.order|add:1 }}</span>
+												</span>
+											</a>
+											<p class="by-author">By Jhon Doe</p>
+										</p>
+									  
+									</div>
+								  </li>
+
+								  {% empty %}
+								  <li>No modules yet.</li>
+								  {% endfor %}
+								</ul>	
+							</div>
+				
+				<div class="module">
+					{% cache 600 module_contents module %}
+						{% for content in module.contents.all %}
+							{% with item=content.item %}
+								<h2>{{ item.title }}</h2>
+								{{ item.render }}
+							{% endwith %}
+						{% endfor %}
+					{% endcache %}
 				</div>
 			</div>
 		</div>
-		{% endfor %}
-	</div>
-              
-=======
-            <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
-                <a href="{% url "student_course_detail_module" object.id m.id %}">
-                    <span>
-                        Module <span class="order">{{ m.order|add:1 }}</span>
-                    </span>
-                    <br>
-                    {{ m.title }}
-                </a>
-            </li>
-        {% empty %}
-            <li>No modules yet.</li>
-        {% endfor %}
-        </ul>
->>>>>>> 31ae8408aca10b381c6036b25ad380e74eccaa76
-    </div>
-    <div class="module">
-        {% cache 600 module_contents module %}
-            {% for content in module.contents.all %}
-                {% with item=content.item %}
-                    <h2>{{ item.title }}</h2>
-                    {{ item.render }}
-                {% endwith %}
-            {% endfor %}
-        {% endcache %}
-    </div>
+</div>
 {% endblock %}
