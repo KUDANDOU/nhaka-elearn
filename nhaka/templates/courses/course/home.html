@@ -21,16 +21,14 @@
                                                 <div class="span12">
                                                     <div class="well" style="opacity: 0.9;">
                                                         <div class="textzz">
-                                                                {% block title %}My courses{% endblock %}
+                                                        {% block title %}My courses{% endblock %}
                                                             <p>Continue Learning >></p>
-                                                            
                                                         </div>
 
                                                         
                                                         <div id="myCarousel" class="carousel fdi-Carousel slide">
                                                             <!-- Carousel items -->
                                                             <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-                                                                    {% for course in object_list %}
                                                                 <div class="carousel-inner onebyone-carosel">
                                                                     <div class="item active">
                                                                         <div class="col-md-4">
@@ -42,9 +40,8 @@
                                                                                 </div>
                                                                                 <div class="text">
                                                                                     <span class="probootstrap-meta"><i class="icon-user-tie"></i> Funani Ndou</span>
-                                                                                    <h3 class="texty">{{ course.title }}</h3>
-                                                                                    <p><a href="#" class="btn btn-primary">href="{% url "student_course_detail" course.id %}">
-                                                                                            Access contents</a> <span class="enrolled-count">2,928 students enrolled</span></p>
+                                                                                    <h3 class="texty">Application Design</h3>
+                                                                                    <p><a href="#" class="btn btn-primary">Resume</a> <span class="enrolled-count">2,928 students enrolled</span></p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

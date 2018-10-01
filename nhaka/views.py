@@ -41,7 +41,7 @@ def home(request):
            
 class LoginView(generic.FormView):
     form_class = LoginForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('student_course_list')
     template_name = 'registration/login.html'
 
     def form_valid(self, form):
