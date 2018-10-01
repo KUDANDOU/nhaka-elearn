@@ -25,6 +25,8 @@ from django.contrib.auth import authenticate, login, logout
 # from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from .forms import LoginForm
+from django.contrib import messages
+import requests 
 # Create your views here.
 
 
