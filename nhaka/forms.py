@@ -10,7 +10,8 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 ModuleFormSet = inlineformset_factory(Course,
                                       Module,
                                       fields=['title',
-                                              'description'],
+                                              'description',
+                                              'thumbnail'],
                                        extra=2,
                                        can_delete=True)
 

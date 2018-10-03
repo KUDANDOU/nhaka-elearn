@@ -60,6 +60,7 @@ class Module(models.Model):
                              on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    thumbnail = models.FileField(upload_to='module/%Y/%m/%d',null=True, blank=True)
     order = OrderField(blank=True, for_fields=['course'])
 
     class Meta:
