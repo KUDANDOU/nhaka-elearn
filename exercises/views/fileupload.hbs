@@ -1,0 +1,20 @@
+<div class="container text-center">
+    <div class="col-sm-12">
+        <div class="form">
+            <h1>Upload a Scorm Exercise !!!</h1>
+
+            <!-- ZIP UPLOAD FORM -->
+            <form action="/upload" enctype="multipart/form-data" method="POST">
+                <div class="section"> Note: Only Compressed Zip Files are allowed. </div>
+                <div class="inner-wrap">
+                    <label>
+                        <input type="file" id="scormFolder" accept="application/zip,application/x-zip,application/x-zip-compressed" name="scormFolder" />
+                    </label>
+                    <div class="button-section">
+                        <input type="submit" name="Upload" value="Upload Exercise"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
+        <div class="row">
+            <div class="col-12">
+                <!-- Messages Function -->
+                <form id="loginform" method="post" class="form-horizontal" action="user/login" novalidate="novalidate">
+                    <div class="row">
+                        <label class="col-sm-4 control-label" for="username"> Username </label>
+                        <div class="col-12">
+                            <input type="text" id="username" class="form-control" name="username" placeholder="Username" aria-required="true" aria-describedby="username-error" aria-invalid="false">
+                            <!-- Error Handling -->
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-4 control-label" for="password"> Password </label>
+                                    <div class="col-12">
+                                        <input type="password" name="password" class="form-control validate-equalTo-blur" placeholder="Password" aria-describedby="password-error" aria-required="true" aria-invalid="false" >
+                                        <!-- Password Error Handling -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-block btn-primary" type="submit" value="Login"> Login </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="float-left"> <a href="/user/register"> Not Registered Yet ?</a></p>
+                                        <p class="float-right">  <a href="/user/forgotPassword"> Forgot Password !!</a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
