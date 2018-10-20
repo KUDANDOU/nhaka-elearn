@@ -1,0 +1,131 @@
+<Card className={classes.card}>
+			<CardMedia
+			  className={classes.media}
+			  image="https://cdn.pixabay.com/photo/2016/11/29/01/16/abacus-1866497__340.jpg"/>
+			<CardContent className={classes.content}>
+			  <Typography component="p">
+				Maths
+			  </Typography>
+			  <Typography component="p">
+				Grade 1
+			  </Typography>
+			</CardContent>
+			<CardActions className={classes.actions} disableActionSpacing>
+			  <IconButton
+				className={classnames(classes.expand, {
+				  [classes.expandOpen]: this.state.expanded,
+				})}
+				onClick={this.handleExpandClick}
+				aria-expanded={this.state.expanded}
+				aria-label="Show more">
+				<ExpandMoreIcon />
+			  </IconButton>
+			</CardActions>
+		  </Card>
+		  
+		  
+export default class extends Component {
+  
+  render() {
+    
+
+    return <BrowserRouter>
+      <MiniDrawer>
+        <Switch>
+          <Route exact path="/" render={props => <HomeCards />} />
+          <Route exact path="/reccommended" render={() => <Rec />} />
+          <Route exact path="/explore" render={() => <ExploreCards />} />
+          <Route exact path="/learn" render={() => <MyPlayer />} />
+          <Route exact path="/bookmarks" render={() => <Bookmarks />} />
+		  <Route  path="/player" render={() => <MyPlayer />} />
+		  <Route path="/playing" render={() => <MyPlaying />}/>
+		  <Route path="/:id" component={NextVideo}/>
+          
+        </Switch>
+      </MiniDrawer>
+    </BrowserRouter>
+  }
+}
+
+
+export default ({match}) =>{
+	
+	
+	return <Fragment>
+			<Paper >
+				<Grid container spacing={16}>
+					 
+				<Grid item xs >
+					
+					<VideoPlayer src={src} />
+					
+		
+					
+					
+					<Grid container spacing={16} >
+						<Grid item xs>
+							<Typography variant="h6" component="h3" className={styles.textMargin}>
+								 Addition 
+							</Typography>
+						</Grid>
+						<Grid item xs>
+							<Button variant="contained" size="large" color="primary" className={styles.button}>
+							  Take Exercise
+							</Button>
+						</Grid>
+					</Grid>
+					<Divider className={styles.textMargin}/>
+					 <Typography variant="caption" gutterBottom className={styles.textMargin}>
+						 123,123,123 views {match.params.id}
+					</Typography> 
+					
+				
+				</Grid>
+				<Grid item>
+							<List className={styles.rootList} subheader={<li />}>
+					
+							   {maths.map(value => (
+									  <ListItem >
+										  
+												<Grid container spacing={16}  >
+													<Button variant="outlined" color="primary" className={styles.button1} >
+														<Grid item >
+															<Img src={value.image} className={styles.card}  />
+														</Grid>
+														<Grid item xs>
+															<Typography variant="h6" component="h3" className={styles.textMargin}>
+															 {value.title}
+															</Typography>
+															<Typography component="body" className={styles.textMargin}>
+															  {value.description}
+															</Typography>
+															
+															
+														</Grid>
+													</Button>
+												</Grid>
+										
+										 </ListItem>
+									
+									))}
+
+						</List>
+				</Grid>
+				
+			
+		 
+			</Grid>
+	   </Paper>
+	  
+	  </Fragment>
+}
+
+
+axios.get("http://localhost:8000/api/subjects/")
+			.then((res)=>{
+					this.setState(()=>{
+					   return {
+						 maths: res.data
+					   }
+					})
+				})
