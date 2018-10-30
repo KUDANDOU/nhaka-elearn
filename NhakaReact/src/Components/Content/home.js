@@ -22,7 +22,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
@@ -66,13 +65,6 @@ const styles = theme => ({
   textMargin:{
 	  marginBottom : 10,
 	  marginTop: 10,
-	  
-  },
-   noCoursesMargin:{
-	  marginBottom : 10,
-	  marginTop: 10,
-	  marginLeft: 10,
-	  
   },
   cara: {
 	height: 250,
@@ -85,12 +77,6 @@ const styles = theme => ({
   },
   table: {
     minWidth: 700,
-  },
-  button: {
-	width: 400,
-	marginBottom : 10,
-	  marginTop: 10,
-	  marginLeft: 10,
   },
  
   
@@ -110,19 +96,12 @@ const rows = [
   createData('Agriculture', 4, 50, 1),
 ];
 
-
-
 class HomeCards extends Component {
-	
-	constructor(props) {
-    super(props);
-	this.state = { 
-		expanded: false,
-		subs,
-		spacing: '16'
-	  };
-  }
-  
+  state = { 
+	expanded: false,
+	subs,
+	spacing: '16'
+  };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -131,67 +110,6 @@ class HomeCards extends Component {
   render() {
     const { classes } = this.props;
 	const { spacing } = this.state;
-	
-	let cardView;
-	
-	
-	if (subs.length != 0) {
-      cardView  = <Grid container className={classes.root} spacing={16}>
-			<Grid item xs={0}>
-			  <Grid container className={classes.demo}   spacing={Number(spacing)}>
-				{subs.map(value => (
-				  <Grid key={value} item>
-						<Card className={classes.card}>
-						<CardMedia
-						  className={classes.media}
-						  image={value.image}/>
-						<CardContent className={classes.content}>
-						  <Typography component="p">
-						  {value.title}
-						  </Typography>
-						  <Typography component="p">
-							{value.description}
-						  </Typography>
-						</CardContent>
-						<CardActions className={classes.actions} disableActionSpacing>
-						  <IconButton
-							aria-label="Show more">
-							<FavoriteIcon />
-						  </IconButton>
-						  <IconButton
-							className={classnames(classes.expand, {
-							  [classes.expandOpen]: this.state.expanded,
-							})}
-							onClick={this.handleExpandClick}
-							aria-expanded={this.state.expanded}
-							aria-label="Show more"
-							component={Link} to="course/player">
-						  <ExpandMoreIcon />
-						</IconButton>
-						</CardActions>
-					  </Card>
-				  </Grid>
-				))}
-			  </Grid>
-			</Grid>
-		  </Grid>;
-    } else {
-      cardView = <div>
-      <Paper className={classes.textMargin} elevation={1}>
-        <Typography variant="h5" component="h3" className={classes.noCoursesMargin}>
-          Looks like you are yet to start a course 
-        </Typography>
-        <Button variant="contained" size="large" color="primary" className={classes.button} component={Link} to="/explore">
-		   Explore courses
-		</Button>
-      </Paper>
-    </div>
-    }
-	
-	
-	 
-
-	
 
     return (
 	<Fragment>
@@ -232,7 +150,45 @@ class HomeCards extends Component {
 			  Continue Learning...
 		</Typography>
 		<Divider className={classes.textMargin} />
-		    {cardView}
+		  <Grid container className={classes.root} spacing={16}>
+			<Grid item xs={0}>
+			  <Grid container className={classes.demo}   spacing={Number(spacing)}>
+				{subs.map(value => (
+				  <Grid key={value} item>
+						<Card className={classes.card}>
+						<CardMedia
+						  className={classes.media}
+						  image={value.image}/>
+						<CardContent className={classes.content}>
+						  <Typography component="p">
+						  {value.title}
+						  </Typography>
+						  <Typography component="p">
+							{value.description}
+						  </Typography>
+						</CardContent>
+						<CardActions className={classes.actions} disableActionSpacing>
+						  <IconButton
+							aria-label="Show more">
+							<FavoriteIcon />
+						  </IconButton>
+						  <IconButton
+							className={classnames(classes.expand, {
+							  [classes.expandOpen]: this.state.expanded,
+							})}
+							onClick={this.handleExpandClick}
+							aria-expanded={this.state.expanded}
+							aria-label="Show more"
+							component={Link} to="course/player">
+						  <ExpandMoreIcon />
+						</IconButton>
+						</CardActions>
+					  </Card>
+				  </Grid>
+				))}
+			  </Grid>
+			</Grid>
+		  </Grid>
 		  
 		  <Typography className={classes.textMargin} variant="h6">
 			  My Report

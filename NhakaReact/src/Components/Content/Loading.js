@@ -1,12 +1,9 @@
 import React, {Fragment, Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Typography from '@material-ui/core/Typography';
-import FullWidthTabs from './Tabs';
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import ContentLoader, { Facebook } from 'react-content-loader';
+import ContentLoader from 'react-content-loader';
 
 
 const styles =  ({
@@ -23,8 +20,7 @@ const styles =  ({
   
 });
 
-const MyLoader = () => <ContentLoader />
-const MyFacebookLoader = () => <Facebook />
+
 
 class Loading extends Component {
   constructor(props){

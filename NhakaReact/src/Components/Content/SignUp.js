@@ -1,43 +1,18 @@
 import React, {Fragment, Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import List from '@material-ui/core/List';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import GridList from '@material-ui/core/GridList';
 import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
-import {maths} from '../../data/info.js';
-import {HorizontalList } from 'react-key-navigation';
-import Divider from '@material-ui/core/Divider';
-import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Img from 'react-image';
-import { ReactDOM } from 'react-dom';
-import blue from '@material-ui/core/colors/blue';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import classNames from 'classnames';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -72,18 +47,36 @@ const styles =  {
   textFieldEdit: {
     flexBasis: 200,
   },
+   button1:{
+	marginTop: 10,
+	marginLeft: 23,
+	marginBottom: 10,
+	marginRight: 10,
+	width: 180,
+  },
   button:{
 	marginTop: 10,
 	marginLeft: 23,
 	marginBottom: 10,
 	marginRight: 10,
 	width: 180,
+	backgroundColor: '#0067b4',
   }, 
+  button1:{
+	marginTop: 10,
+	marginLeft: 23,
+	marginBottom: 10,
+	marginRight: 10,
+	width: 180,
+  },
   myMargin:{
 	   marginTop: 10,
 	marginLeft: 10,
 	marginBottom: 10,
 	marginRight: 10,
+  },
+  stepper:{
+	 backgroundColor: '#0067b4',
   }
   
 };
@@ -117,6 +110,7 @@ class SignUp extends Component {
 				guardian:'',
 				phone:'',
 				email:'',
+				password: '',
 				profile: ['',],
 		 };
 		  
@@ -382,6 +376,19 @@ class SignUp extends Component {
 					  variant="outlined"/>
 						  
 		   </ListItem>
+		   <ListItem>
+				 <TextField
+					  required
+					  id="gender"
+					  label="Desired Password"
+					  type="password"
+					  value={this.state.email}
+				      onChange={this.handleChangePassword('password')}
+					  margin="none"
+					  fullWidth
+					  variant="outlined"/>
+						  
+		   </ListItem>
 		   
 		</List>
      
@@ -528,7 +535,13 @@ class SignUp extends Component {
       [email]: event.target.value,
 	 
     });
-	 profile = [
+	 
+  };
+  
+   handleChangePassword = password => event => {
+    this.setState({
+      [password]: event.target.value,
+	  profile : [
 	   {name : 'Name', desc: this.state.name},
 	   {name : 'Date of birth', desc: this.state.dob},
 	   {name : 'Gender', desc: this.state.gender},
@@ -546,13 +559,41 @@ class SignUp extends Component {
 	   {name : 'Guardian', desc: this.state.guardian},
 	   {name : 'Home Phone', desc: this.state.phone},
 	   {name : 'Gurdian Email', desc: this.state.email},
+	   {name : 'User Password', desc: this.state.password},
 	  ]
+    });
   };
   
   
   
   handleSubmit(event) {
-    alert('Done');
+	axios.post('/user', {
+		firstname:this.state.name,
+		lastname:this.state.name,
+		gender:this.state.gender,
+		dob:this.state.dob,
+		nationality:this.state.nationality,
+		nationalID: this.state.nationalId,
+		faith:this.state.faith,
+		language:this.state.language,
+		specialneeds:this.state.special,
+		schoolName:this.state.school,
+		schoolAddress:this.state.schoolAddress,
+		grade:this.state.grade,
+		address:this.state.address,
+		suburb:this.state.suburb,
+		city: this.state.city,
+		guardian:this.state.guardian,
+		phone:this.state.phone,
+		email:this.state.email,
+		password: this.state.password
+	  })
+	  .then(function (response) {
+		console.log(response);
+	  })
+	  .catch(function (error) {
+		console.log(error);
+	  });
    
   
   }
@@ -578,13 +619,13 @@ class SignUp extends Component {
 			</Grid>
 			<Grid item>
 				<main className={classes.layout}>
-					<Typography component="h1" variant="h4" className={classes.button}>
+					<Typography component="h1" variant="h4" className={classes.button1}>
 					  Sign Up
 					</Typography>
-					<Stepper activeStep={activeStep} className={classes.stepper}>
+					<Stepper activeStep={activeStep} >
 					  {steps.map(label => (
-						<Step key={label}>
-						  <StepLabel>{label}</StepLabel>
+						<Step key={label}  >
+						  <StepLabel >{label}</StepLabel>
 						</Step>
 					  ))}
 					</Stepper>
@@ -604,7 +645,7 @@ class SignUp extends Component {
 						  {this.getStepContent(activeStep)}
 						  <div className={classes.buttons}>
 							{activeStep !== 0 && (
-							  <Button onClick={this.handleBack} className={classes.button}>
+							  <Button onClick={this.handleBack} className={classes.button1}>
 								Back
 							  </Button>
 							)}

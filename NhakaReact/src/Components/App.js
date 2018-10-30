@@ -9,10 +9,6 @@ import Bookmarks from './Content/bookmarks';
 import MyPlayer from './Content/player';
 import MyPlaying from './Content/playing';
 import NextVideo from './Content/NextVideo';
-import SignUp from './Content/SignUp';
-import Terms from './Content/Term';
-import FAQ from './Content/faq';
-import Loading from './Content/Loading';
 
 
 const video = ({match}) => {
@@ -35,16 +31,11 @@ export default class extends Component {
           <Route exact path="/" render={props => <HomeCards />} />
           <Route exact path="/reccommended" render={() => <Rec />} />
           <Route exact path="/explore" render={() => <ExploreCards />} />
-          <Route exact path="/video/:id" render={() => <MyPlaying />} />
+          <Route exact path="/learn" render={() => <MyPlayer />} />
           <Route exact path="/bookmarks" render={() => <Bookmarks />} />
-          <Route exact path="/signup" render={() => <SignUp />} />
-		  <Route exact path="/course/:course" component={course} />
-		  <Route exact path="/termsandconditions" render={() => <Terms />} />
-		  <Route exact path="/faq" render={() => <FAQ />} />
-		  <Route exact path="/course/:course" component={course} />
-		  <Route exact path="/playing" render={() => <MyPlaying />}/>
-		  <Route exact path="/video/:id" component={video}/>  
-		  <Route exact path="/google" render={() => <Loading />} />  
+		  <Route  path="/course/:course" component={course} />
+		  <Route path="/playing" render={() => <MyPlaying />}/>
+		  <Route path="/video/:id" component={video}/>  
         </Switch>
       </MiniDrawer>
     </BrowserRouter>

@@ -14,23 +14,27 @@ import Grid from '@material-ui/core/Grid';
 import {subs} from '../../data/info.js';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Tilt from 'react-tilt';
 
 
 const styles = theme => ({
   card: {
 	height: 250,
-	width: 200
+	width: 160,
   },
   root: {
     flexGrow: 1,
 	width: '100%'
   },
   media: {
-    height: 140,
+    height: 205,
     paddingTop: '56.25%', // 16:9
   },
   content: {
-    height: 0,
+   height: 0,
+	marginBottom : 30,
   },
   actions: {
     display: 'flex',
@@ -54,13 +58,30 @@ const styles = theme => ({
   },
   textMargin:{
 	  marginBottom : 10,
+	  marginTop: 40,
+  },
+  textMarginD:{
+	  marginBottom : 10,
 	  marginTop: 10,
-  }
+	  
+  },
+   noCoursesMargin:{
+	  marginBottom : 10,
+	  marginTop: 10,
+	  marginLeft: 10,
+	  
+  },
+  button: {
+	width: 400,
+	marginBottom : 10,
+	  marginTop: 10,
+	  marginLeft: 10,
+  },
  
   
 });
 
-class Bookmarks extends Component {
+class Search extends Component {
   state = { 
 	expanded: false,
 	subs,
@@ -74,57 +95,61 @@ class Bookmarks extends Component {
   render() {
     const { classes } = this.props;
 	const { spacing } = this.state;
-
-    return (
-	<Fragment>
 	
-	  <Typography className={classes.textMargin} variant="h6">
-			  My Bookmarks
-		</Typography>
-		<Divider className={classes.textMargin} />
-	  <Grid container className={classes.root} spacing={16}>
-        <Grid item xs={0}>
-          <Grid container className={classes.demo}   spacing={Number(spacing)}>
-            {subs.map(value => (
-              <Grid key={value} item>
-					<Card className={classes.card}>
+	let cardView;
+	
+	
+	if (subs.length !== 0) {
+      cardView  = <Grid container className={classes.root} spacing={16}>
+			<Grid item xs={0}>
+			  <Grid container className={classes.demo}   spacing={Number(spacing)}>
+				{subs.map(value => (
+				  <Grid key={value} item>
+				        <Tilt className="Tilt" options={{ max : 35 ,  perspective:    1000}}  >
+						<Card className={classes.card}>
 						<CardMedia
+						  component={Link} to="course/player"
 						  className={classes.media}
 						  image={value.image}/>
 						<CardContent className={classes.content}>
 						  <Typography component="p">
 						  {value.title}
 						  </Typography>
-						  <Typography component="p">
-							{value.description}
-						  </Typography>
 						</CardContent>
-						<CardActions className={classes.actions} disableActionSpacing>
-						  <IconButton
-							className={classnames(classes.expand, {
-							  [classes.expandOpen]: this.state.expanded,
-							})}
-							onClick={this.handleExpandClick}
-							aria-expanded={this.state.expanded}
-							aria-label="Show more"
-							component={Link} to="/course/yui">
-						  <ExpandMoreIcon />
-						</IconButton>
-						</CardActions>
 					  </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid>
-	   
+					   </Tilt>
+				  </Grid>
+				))}
+			  </Grid>
+			</Grid>
+		  </Grid>;
+    } else {
+      cardView = <div>
+      <Paper className={classes.textMargin} elevation={1}>
+        <Typography variant="h5" component="h3" className={classes.noCoursesMargin}>
+          Looks like you are yet to save your favourite courses 
+        </Typography>
+        <Button variant="contained" size="large" color="primary" className={classes.button} component={Link} to="/explore">
+		   Explore courses
+		</Button>
+      </Paper>
+    </div>
+    }
+
+    return (
+	<Fragment>
+	    <Typography color="inherit" className={classes.textMargin} variant="h6">
+			  Search Results
+		</Typography>
+		<Divider className={classes.textMarginD} />
+			{cardView}
 	  </Fragment>
     );
   }
 }
 
-Bookmarks.propTypes = {
+Search.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Bookmarks);
+export default withStyles(styles)(Search);

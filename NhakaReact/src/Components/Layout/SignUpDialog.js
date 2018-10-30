@@ -2,23 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+
 const styles  = {
   avatar: {
     backgroundColor: blue[100],
@@ -49,20 +40,7 @@ const styles  = {
 };
 
 
-const ranges = [
-  {
-    value: '0-20',
-    label: '0 to 20',
-  },
-  {
-    value: '21-50',
-    label: '21 to 50',
-  },
-  {
-    value: '51-100',
-    label: '51 to 100',
-  },
-];
+
 
 class SignUpDialog extends React.Component {
   handleClose = () => {
@@ -100,7 +78,7 @@ class SignUpDialog extends React.Component {
 			  }}
 			/>
         </div>
-		<Button variant="contained" size="medium" color="primary" className={classNames(classes.marginEdit, classes.textField)}>
+		<Button variant="contained" size="medium" color="#0067b4" className={classNames(classes.marginEdit, classes.textField)}>
 				Login
 		</Button>
 		

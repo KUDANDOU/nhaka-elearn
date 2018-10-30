@@ -5,6 +5,12 @@ import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {Drawer, AppBar, Toolbar, List, Typography, Divider , CssBaseline} from '@material-ui/core';
+/*import  from '@material-ui/core/Drawer';
+import  from '@material-ui/core/AppBar';
+import  from '@material-ui/core/Toolbar';
+import from '@material-ui/core/List';
+import  from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';*/
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -21,17 +27,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import blue from '@material-ui/core/colors/blue';
-import SimpleDialog from './Dialog';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import Footer from '../Content/Footer';
 
 const drawerWidth = 240;
 
@@ -43,13 +38,6 @@ const styles = theme => ({
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-  },
-   color: {
-     color: '#4b55dd',	
-  },
-  footerColor: {
-	   backgroundColor: '#4b55dd',
-	   marginBottom: 0
   },
   space:{
 	  marginLeft: 1100
@@ -109,45 +97,19 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
 	height: '100%'
   },
-   avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-   margin: {
-	    textAlign: "center",
-		textColor: "white",
-	    width: '100%',
-		color: 'white',
-  }
 });
 
-
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-var opened = false;
-
 class MiniDrawer extends Component {
-
   state = {
     open: false,
-	opened: false
   };
 
   handleDrawerOpen = () => {
-    this.setState({ opened: true });
+    this.setState({ open: true });
   };
 
   handleDrawerClose = () => {
-    this.setState({ opened: false });
-  };
-  
-   handleClickOpen = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ selectedValue: value, open: false });
+    this.setState({ open: false });
   };
 
   render() {
@@ -157,31 +119,31 @@ class MiniDrawer extends Component {
 	const navItems = (
 		  <div>
 			<ListItem button component={Link} to="/" >
-			  <ListItemIcon className={classes.color}>
-				<AssignmentIcon />
+			  <ListItemIcon>
+				<InboxIcon />
 			  </ListItemIcon>
 			  <ListItemText primary="Home" />
 			</ListItem>
 			<ListItem button component={Link} to="/reccommended">
-			  <ListItemIcon className={classes.color}>
+			  <ListItemIcon>
 				<StarIcon />
 			  </ListItemIcon>
 			  <ListItemText primary="Reccommendations"  />
 			</ListItem>
 			<ListItem button component={Link} to="/explore">
-			  <ListItemIcon className={classes.color}>
+			  <ListItemIcon>
 				<LocationOnIcon />
 			  </ListItemIcon>
 			  <ListItemText primary="Explore" />
 			</ListItem>
-			<ListItem button component={Link} to="/video/learn">
-			  <ListItemIcon className={classes.color}>
+			<ListItem button component={Link} to="/learn">
+			  <ListItemIcon>
 				<PlayArrowIcon />
 			  </ListItemIcon>
 			  <ListItemText primary="Learn"/>
 			</ListItem>
 			<ListItem button component={Link} to="/bookmarks">
-			  <ListItemIcon className={classes.color}>
+			  <ListItemIcon>
 				<FavoriteIcon />
 			  </ListItemIcon>
 			  <ListItemText primary="Favorites"/>
@@ -195,36 +157,33 @@ class MiniDrawer extends Component {
 		  <div className={classes.root}>
 			<AppBar
 			  position="absolute"
-			  className={classNames(classes.appBar, this.state.opened && classes.appBarShift)}>
-			  <Toolbar disableGutters={!this.state.opened}>
+			  className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+			>
+			  <Toolbar disableGutters={!this.state.open}>
 				<IconButton
 				  color="inherit"
 				  aria-label="Open drawer"
 				  onClick={this.handleDrawerOpen}
-				  className={classNames(classes.menuButton, this.state.opened && classes.hide)}>
+				  className={classNames(classes.menuButton, this.state.open && classes.hide)}
+				>
 				  <MenuIcon />
 				</IconButton>
 				<Typography variant="h6" color="inherit" noWrap>
 				  Nhaka
 				</Typography>
 				<div className={classes.space}>
-					<IconButton color='white'>
-					  <AccountCircle onClick={this.handleClickOpen} />
+					<IconButton>
+					  <AccountCircle />
 					</IconButton>
-					<SimpleDialog
-					  selectedValue={this.state.selectedValue}
-					  open={this.state.open}
-					  onClose={this.handleClose}
-					/>
 				</div>
 			  </Toolbar>
 			</AppBar>
 			<Drawer
 			  variant="permanent"
 			  classes={{
-				paper: classNames(classes.drawerPaper, !this.state.opened && classes.drawerPaperClose),
+				paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
 			  }}
-			  opened={this.state.opened}
+			  open={this.state.open}
 			>
 			  <div className={classes.toolbar}>
 				<IconButton onClick={this.handleDrawerClose}>
@@ -239,19 +198,6 @@ class MiniDrawer extends Component {
 			  <div className={classes.toolbar} />
 			  {children}
 			</main>
-		  </div>
-		  <div className={classes.footerColor} >
-		   
-			<ListItem button component={Link} to="/termsandconditions" >
-			  <ListItemText primary="Terms and Conditions" className={classes.margin} />
-			</ListItem>
-			<ListItem button component={Link} to="/faq">
-			  <ListItemText primary="FAQs" className={classes.margin} />
-			</ListItem>
-			<ListItem button >
-			  <ListItemText primary="Email Support: support@nhakaelearning.com" className={classes.margin} />
-			</ListItem>
-		  
 		  </div>
 	  </Fragment>
     );

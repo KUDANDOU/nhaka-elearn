@@ -12,14 +12,11 @@ import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
+import {subs} from '../../data/info.js';
 import {HorizontalList } from 'react-key-navigation';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
-import {subs} from '../../data/info.js';
-import axios from 'axios';
 
-let maths = [];
-let error = '';
 
 const styles = theme => ({
   card: {
@@ -68,65 +65,42 @@ const styles = theme => ({
 });
 
 class ExploreCards extends Component {
-	
-	constructor(){
-        super()
-        this.state = {
-            maths: [],
-			expanded: false,
-			spacing: '16',
-			counter: 1,
-			error: ''
-			
-        }
-    }
-	
-	
-	 componentDidMount(){
-			axios.get("http://127.0.0.1:8000/api/subjects")
-			.then((res)=>{
-					this.setState(()=>{
-					   return {
-						 maths: res.data
-					   }
-					})
-				})
-		}
-  
+  state = { 
+	expanded: false,
+	subs,
+	spacing: '16'
+  };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
-  
-  
- 
 
   render() {
     const { classes } = this.props;
-	const { spacing, maths } = this.state;
+	const { spacing } = this.state;
 
     return (
 	<Fragment>
 		
 	  <Typography className={classes.textMargin} variant="h6">
-			  Mathematics {error}
+			  Mathematics
 		</Typography>
 		<Divider className={classes.textMargin} />
 	  <Grid container className={classes.root} spacing={16}>
         <Grid item xs={0}>
           <Grid container className={classes.demo}   spacing={Number(spacing)}>
-            {maths.map(value => (
+            {subs.map(value => (
               <Grid key={value} item>
 					<Card className={classes.card}>
 						<CardMedia
 						  className={classes.media}
-						  image={value.id}/>
+						  image={value.image}/>
 						<CardContent className={classes.content}>
 						  <Typography component="p">
 						  {value.title}
 						  </Typography>
 						  <Typography component="p">
-							{value.slug}
+							{value.description}
 						  </Typography>
 						</CardContent>
 						<CardActions className={classes.actions} disableActionSpacing>

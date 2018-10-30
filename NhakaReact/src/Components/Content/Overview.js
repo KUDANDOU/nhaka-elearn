@@ -122,7 +122,25 @@ class Overview extends Component {
 		</Typography>
 		    
        </ListItem>
-	   	  
+	   <ListItem >
+          <Typography variant="caption" gutterBottom>
+				Teacher
+			</Typography>    
+       </ListItem>
+	   <ListItem >
+          <Avatar
+				alt="Adelle Charles"
+				src="https://cdn.pixabay.com/photo/2016/03/27/17/42/man-1283235__340.jpg"
+				className={classes.bigAvatar}
+			  />
+			    
+			
+			<Typography variant="h6" className={classes.nameSpace}>
+			       Jonh Gray
+			</Typography>
+		    
+       </ListItem>
+	  
          <Divider className={classes.textMargin}/>  
 
 		<ListItem >

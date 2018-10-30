@@ -119,13 +119,3 @@ export default ({match}) =>{
 	  
 	  </Fragment>
 }
-
-
-axios.get("http://localhost:8000/api/subjects/")
-			.then((res)=>{
-					this.setState(()=>{
-					   return {
-						 maths: res.data
-					   }
-					})
-				})

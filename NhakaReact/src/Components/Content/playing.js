@@ -23,7 +23,7 @@ import Grid from '@material-ui/core/Grid';
 import {maths} from '../../data/info.js';
 import {HorizontalList } from 'react-key-navigation';
 import Divider from '@material-ui/core/Divider';
-import { Link, withRouter, Route, Redirect} from 'react-router-dom';
+import { Link, withRouter, Route } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
@@ -31,7 +31,7 @@ import FullWidthTabs from './Tabs';
 import Paper from '@material-ui/core/Paper';
 import Img from 'react-image';
 import { ReactDOM } from 'react-dom';
-import { ContextMenu, Item, Separator, Submenu, ContextMenuProvider } from 'react-contexify';
+import VideoPlayer from './videoPlayer';
 
 
 
@@ -85,7 +85,8 @@ class MyPlaying extends Component {
 	  });
   }
   
-
+  
+  
   
 
   render() {
@@ -99,7 +100,6 @@ class MyPlaying extends Component {
 				 
 			<Grid item xs >
 				
-			<ContextMenuProvider id="menu_id">	
 				<Video autoPlay loop 
 					controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
 					poster="http://sourceposter.jpg"
@@ -110,22 +110,8 @@ class MyPlaying extends Component {
 					<source src={this.state.src} />
 					<track label="English" kind="subtitles" srcLang="en" src="http://source.vtt" default />
 				</Video>
-				 </ContextMenuProvider>
-			<ContextMenu id='menu_id'>
-		   <Item >Home</Item>
-			<Separator />
-		   <Item >Recommendations</Item>
-			<Separator />
-			<Item >Explore</Item>
-			 <Separator />
-			<Item >Learn</Item>
-			<Separator />
-			<Item >Favourites</Item>
-      
-       
-			</ContextMenu>
-					
 				
+	
 				
 				
 				<Grid container spacing={16} >
@@ -135,14 +121,14 @@ class MyPlaying extends Component {
 						</Typography>
 					</Grid>
 					<Grid item xs>
-						<Button variant="contained" size="large" color="primary" className={classes.button} component={Link} to="/google">
-							Take Exercise
+						<Button variant="contained" size="large" color="primary" className={classes.button} onClick={this.handleClick}>
+						  Take Exercise
 						</Button>
 					</Grid>
 				</Grid>
 				<Divider className={classes.textMargin}/>
 				 <Typography variant="caption" gutterBottom className={classes.textMargin}>
-					 Teacher: Jonh chongoma 123,123,123 views 
+					 123,123,123 views 
 				</Typography> 
 				
 			
